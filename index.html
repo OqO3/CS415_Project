@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Page</title>
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <h1>Home Page</h1>
+  </header>
+
+  <main class="home-page">
+    <section class="home-options">
+      <a class="home-card" href="schedule.html">
+        <div class="icon-circle">
+          <span class="card-icon">▣</span>
+        </div>
+        <p>Schedule</p>
+      </a>
+
+      <button class="home-card placeholder-button" type="button" onclick="showPlaceholderMessage()">
+        <div class="icon-circle">
+          <span class="card-icon">⌕</span>
+        </div>
+        <p>Search for Classes</p>
+      </button>
+    </section>
+
+    <p id="placeholderMessage" class="placeholder-message" hidden>
+      Class search page is a placeholder for now.
+    </p>
+  </main>
+
+  <script src="home.js"></script>
+</body>
+</html>

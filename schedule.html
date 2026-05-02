@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schedule</title>
+  <link rel="stylesheet" href="schedule.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <button id="backButton" class="back-button" aria-label="Go back">←</button>
+    <h1>Schedule</h1>
+    <p class="semester">Semester: Spring 2026</p>
+  </header>
+
+  <main class="page">
+    <section class="calendar-card">
+      <div class="calendar" id="calendar"></div>
+    </section>
+
+    <section class="enrolled-section">
+      <h2>Enrolled Classes</h2>
+
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <tr>
+                <th>Class</th>
+                <th>Time</th>
+                <th>Teacher</th>
+                <th>Location</th>
+                <th>Details</th>
+                <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="classTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="bottom-actions">
+      <button id="clearButton" class="secondary-button" disabled>Clear</button>
+      <button id="saveButton" class="primary-button" disabled>Save</button>
+    </div>
+  </main>
+
+  <script src="schedule.js"></script>
+</body>
+</html>

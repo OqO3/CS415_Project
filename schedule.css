@@ -1,0 +1,260 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111827;
+  background-color: white;
+}
+
+.top-bar {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 40px;
+}
+
+.back-button {
+  border: none;
+  background: none;
+  font-size: 32px;
+  cursor: pointer;
+  margin-right: 24px;
+  color: #374151;
+}
+
+.top-bar h1 {
+  font-size: 34px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.semester {
+  margin-left: auto;
+  font-size: 18px;
+  color: #374151;
+}
+
+.page {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 32px 40px;
+}
+
+.calendar-card {
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  width: 100%;
+}
+
+.calendar {
+  position: relative;
+  display: grid;
+  grid-template-columns: 105px repeat(7, 1fr);
+  background-color: white;
+}
+
+.time-header,
+.day-header {
+  height: 60px;
+  background-color: #eef4ff;
+  border-right: 1px solid #d1d5db;
+  border-bottom: 1px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 16px;
+}
+
+.day-header {
+  justify-content: center;
+}
+
+.time-cell {
+  height: 83px;
+  background-color: #f9fafb;
+  border-right: 1px solid #d1d5db;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 24px 16px;
+  color: #4b5563;
+}
+
+.grid-cell {
+  height: 83px;
+  border-right: 1px solid #d1d5db;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.class-block {
+  position: absolute;
+  border-radius: 8px;
+  padding: 12px 10px;
+  font-size: 14px;
+  line-height: 1.35;
+  cursor: pointer;
+  color: white;
+  background-color: #4b5df5;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.class-block:hover {
+  outline: 3px solid rgba(59, 130, 246, 0.35);
+}
+
+.class-title {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.class-meta {
+  font-size: 13px;
+}
+
+.enrolled-section {
+  margin-top: 52px;
+  width: 100%;
+}
+
+.enrolled-section h2 {
+  font-size: 25px;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.table-card {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #eef4ff;
+}
+
+th {
+  text-align: left;
+  padding: 18px;
+  font-weight: 400;
+  color: #374151;
+}
+
+td {
+  padding: 18px;
+  border-top: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+.class-row {
+  transition: background-color 0.2s ease;
+}
+
+.class-row.highlighted {
+  background-color: #e0ecff;
+}
+
+.class-row.pending-drop {
+  background-color: #fff1f1;
+}
+
+.details-row {
+  background-color: #f9fafb;
+}
+
+.details-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 80px;
+  color: #4b5563;
+}
+
+.details-content a {
+  color: #2563eb;
+}
+
+.details-toggle {
+  border: none;
+  background: none;
+  color: #2563eb;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.drop-button {
+  background-color: #d93025;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 22px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.undo-button {
+  background-color: #e5e7eb;
+  color: #374151;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 22px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.bottom-actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.primary-button,
+.secondary-button {
+  border-radius: 8px;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.primary-button {
+  border: none;
+  background-color: #3f5af5;
+  color: white;
+}
+
+.secondary-button {
+  border: 1px solid #c9ced6;
+  background-color: white;
+  color: #374151;
+}
+
+.primary-button:disabled,
+.secondary-button:disabled {
+  background-color: #e5e7eb;
+  color: #9ca3af;
+  border-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.plain-email {
+  color: #111827;
+  text-decoration: none;
+}
+
+.class-description {
+  max-width: 520px;
+  line-height: 1.5;
+}

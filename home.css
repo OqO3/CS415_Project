@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111827;
+  background-color: white;
+}
+
+.top-bar {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 68px;
+}
+
+.top-bar h1 {
+  font-size: 44px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.home-page {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.home-options {
+  display: flex;
+  justify-content: center;
+  gap: 42px;
+  flex-wrap: wrap;
+}
+
+.home-card {
+  width: 330px;
+  height: 185px;
+  border: 1px solid #d1d5db;
+  border-radius: 16px;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  color: #111827;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.home-card:hover {
+  outline: 3px solid rgba(59, 130, 246, 0.25);
+}
+
+.icon-circle {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background-color: #dce8ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon {
+  font-size: 42px;
+  color: #3f5af5;
+  line-height: 1;
+}
+
+.home-card p {
+  margin: 0;
+  font-size: 28px;
+}
+
+.placeholder-button {
+  appearance: none;
+}
+
+.placeholder-message {
+  margin-top: 32px;
+  font-size: 18px;
+  color: #4b5563;
+}
