@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Classes</title>
+  <link rel="stylesheet" href="search.css" />
+</head>
+<body>
+  <main class="search-page">
+    <a class="back-link" href="index.html">← Back</a>
+    <h1>Search Criteria</h1>
+
+    <section class="criteria-card">
+      <label for="termSelect">Term</label>
+      <select id="termSelect">
+        <option value="">Select a term</option>
+        <option>Spring 2026</option>
+        <option>Fall 2026</option>
+      </select>
+
+      <label for="subjectSelect">Subject</label>
+      <select id="subjectSelect">
+        <option value="">Select a subject</option>
+        <option value="CS">Computer Science</option>
+        <option value="MATH">Mathematics</option>
+        <option value="STAT">Statistics</option>
+      </select>
+
+      <label for="courseNumber">Course Number</label>
+      <input id="courseNumber" placeholder="Enter course number" />
+
+      <button id="addCriteriaButton" class="outline-button" type="button">Add criteria</button>
+      <div id="criteriaList" class="criteria-list" aria-live="polite"></div>
+    </section>
+
+    <section class="bottom-actions">
+      <button id="clearButton" class="outline-button" type="button">Clear</button>
+      <button id="searchButton" class="primary-button" type="button">Search</button>
+    </section>
+  </main>
+
+  <script src="search.js"></script>
+</body>
+</html>
