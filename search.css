@@ -1,0 +1,30 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #111827; background: #fff; }
+.top-bar {
+  height: 72px; display: flex; align-items: center; border-bottom: 1px solid #e5e7eb; padding: 0 40px;
+}
+.back-link { text-decoration: none; color: #374151; font-size: 32px; margin-right: 20px; }
+.top-bar h1 { margin: 0; font-size: 34px; font-weight: 400; }
+.semester { margin-left: auto; color: #374151; font-size: 18px; }
+
+.search-page { max-width: 900px; margin: 0 auto; padding: 32px 40px; }
+.criteria-card {
+  border: 1px solid #d1d5db; border-radius: 12px; padding: 28px; background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12); display: flex; flex-direction: column; gap: 10px;
+}
+label { font-size: 25px; font-weight: 400; }
+input, select, button { font: inherit; }
+input, select {
+  height: 52px; border: 1px solid #d1d5db; border-radius: 8px; padding: 0 14px; font-size: 22px; color: #4b5563; background: #fff;
+}
+.outline-button, .primary-button {
+  height: 52px; border-radius: 8px; font-size: 24px; cursor: pointer; transition: outline 0.15s ease;
+}
+.outline-button { border: 1px solid #3f5af5; color: #3f5af5; background: #fff; margin-top: 8px; }
+.primary-button { border: none; color: #fff; background: #3f5af5; }
+.outline-button:hover, .primary-button:hover { outline: 3px solid rgba(59,130,246,0.25); }
+.criteria-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2px; }
+.criteria-pill { border: 1px solid #3f5af5; border-radius: 999px; padding: 6px 12px; font-size: 16px; background: #fff; }
+
+.bottom-actions { display: flex; justify-content: flex-end; gap: 16px; margin-top: 26px; }
+.bottom-actions button { flex: 0 0 220px; margin: 0; }
