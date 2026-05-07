@@ -1,8 +1,19 @@
 const mockResults = [
-  { code: "CS 444", title: "Advanced Web Development", status: "red", seats: "3 seats left", prereq: "Requires CS 310" },
-  { code: "CS 310", title: "Data Structures", status: "green", seats: "12 seats left", prereq: "Requires CS 240" },
-  { code: "CS 240", title: "Computer Organization", status: "green", seats: "FULL", prereq: "Requires CS 101", badge: "FULL" },
-  { code: "CS 101", title: "Introduction to Computer Science", status: "orange", seats: "Completed", prereq: "No prerequisite" }
+  { code: "CS 444", title: "Advanced Web Development", status: "red", open: false },
+  {
+    code: "CS 310",
+    title: "Data Structures",
+    status: "green",
+    open: true,
+    details: {
+      instructor: "Prof. Michael Chen",
+      time: "Tue, Thu 10:00 AM - 11:30 AM",
+      location: "McCormack Hall 101",
+      seats: "8 / 25"
+    }
+  },
+  { code: "CS 240", title: "Computer Organization", status: "green", badge: "FULL", open: false },
+  { code: "CS 101", title: "Introduction to Computer Science", status: "orange", open: false }
 ];
 
 const chipRow = document.getElementById("chipRow");
@@ -14,29 +25,39 @@ function render() {
   chipRow.innerHTML = "";
   resultsList.innerHTML = "";
 
-  mockResults.forEach(item => {
+  mockResults.forEach((item, index) => {
     const chip = document.createElement("div");
     chip.className = `chip ${item.status}`;
     chip.innerHTML = `<span class="dot ${item.status}"></span>${item.code}`;
     chipRow.appendChild(chip);
 
     const card = document.createElement("article");
-    card.className = "result-card";
+    card.className = `result-card ${item.open ? "open" : ""}`;
     card.style.borderLeftColor = statusColor(item.status);
 
     card.innerHTML = `
       <div class="result-top">
         <div>
-          <div class="result-code"><span class="dot ${item.status}"></span>${item.code} ${item.badge ? `<span class="chip red" style="font-size:16px;padding:2px 10px;">${item.badge}</span>` : ""}</div>
+          <div class="result-code"><span class="dot ${item.status}"></span>${item.code}${item.badge ? ` <span class="full-badge">${item.badge}</span>` : ""}</div>
           <div class="result-title">${item.title}</div>
         </div>
-        <button class="result-toggle" aria-label="Toggle details">⌄</button>
+        <button class="result-toggle" aria-label="Toggle details">${item.open ? "⌃" : "⌄"}</button>
       </div>
-      <div class="result-details">${item.seats} • ${item.prereq}</div>
+      ${item.details ? `
+      <div class="result-details">
+        <div class="details-grid">
+          <strong>Instructor:</strong><span>${item.details.instructor}</span>
+          <strong>Time:</strong><span>${item.details.time}</span>
+          <strong>Location:</strong><span>${item.details.location}</span>
+          <strong>Available Seats:</strong><span>${item.details.seats}</span>
+        </div>
+        <button class="added-button" type="button">✓ Added to Schedule</button>
+      </div>` : ""}
     `;
 
     card.querySelector(".result-toggle").addEventListener("click", () => {
-      card.classList.toggle("open");
+      mockResults[index].open = !mockResults[index].open;
+      render();
     });
 
     resultsList.appendChild(card);
