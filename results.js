@@ -6,6 +6,8 @@ const mockResults = [
     title: "Advanced Web Development",
     description: "Builds modern full-stack web applications with component architectures, APIs, authentication, and deployment workflows.",
     subject: "Computer Science",
+    modality: "Hybrid",
+    majorRequirement: false,
     status: "red",
     open: false,
     added: false,
@@ -39,6 +41,8 @@ const mockResults = [
     title: "Data Structures",
     description: "Covers lists, trees, graphs, hash tables, and performance analysis for efficient data organization.",
     subject: "Computer Science",
+    modality: "In Person",
+    majorRequirement: true,
     status: "green",
     open: true,
     added: false,
@@ -72,6 +76,8 @@ const mockResults = [
     title: "Computer Organization",
     description: "Introduces digital logic, CPU organization, memory hierarchy, assembly language, and low-level performance concepts.",
     subject: "Computer Science",
+    modality: "In Person",
+    majorRequirement: true,
     status: "green",
     badge: "FULL",
     open: false,
@@ -106,6 +112,8 @@ const mockResults = [
     title: "Introduction to Computer Science",
     description: "A foundational survey of problem-solving, programming basics, computational thinking, and software tools.",
     subject: "Computer Science",
+    modality: "Online",
+    majorRequirement: true,
     status: "orange",
     open: false,
     added: false,
@@ -139,6 +147,8 @@ const mockResults = [
     title: "Machine Learning",
     description: "Supervised and unsupervised learning methods, model evaluation, and practical ML workflows.",
     subject: "Computer Science",
+    modality: "In Person",
+    majorRequirement: true,
     status: "green",
     open: false,
     added: false,
@@ -152,6 +162,8 @@ const mockResults = [
     title: "Database Systems",
     description: "Relational design, SQL, indexing, transactions, and data modeling for scalable applications.",
     subject: "Computer Science",
+    modality: "Hybrid",
+    majorRequirement: true,
     status: "green",
     open: false,
     added: false,
@@ -165,6 +177,8 @@ const mockResults = [
     title: "Cloud Computing",
     description: "Cloud service models, distributed infrastructure, containers, and resilient deployment design.",
     subject: "Computer Science",
+    modality: "Online",
+    majorRequirement: false,
     status: "red",
     open: false,
     added: false,
@@ -178,6 +192,8 @@ const mockResults = [
     title: "Operating Systems",
     description: "Process scheduling, memory management, file systems, concurrency, and OS-level abstractions.",
     subject: "Computer Science",
+    modality: "In Person",
+    majorRequirement: true,
     status: "green",
     open: false,
     added: false,
@@ -261,6 +277,11 @@ function render() {
     const addButton = card.querySelector(".added-button");
     if (!isBlocked) {
       addButton.addEventListener("click", () => {
+        if (!mockResults[index].added && hasTimeConflict(mockResults[index].scheduleCourse)) {
+          alert(`${mockResults[index].code} conflicts with a class already in your schedule.`);
+          return;
+        }
+
         mockResults[index].added = !mockResults[index].added;
         syncScheduleClasses();
         render();
@@ -293,7 +314,41 @@ function matchesCriteria(item) {
   const bySubject = typedSubject === "" || typedSubject === "any subject" || item.subject.toLowerCase().includes(typedSubject) || item.title.toLowerCase().includes(typedSubject) || item.code.toLowerCase().includes(typedSubject);
   const byNumber = typedNumber === "" || typedNumber === "any number" || item.catalogNumber.includes(typedNumber) || item.code.replace(" ", "").toLowerCase().includes(typedNumber);
 
-  return bySubject && byNumber;
+  const startMinutes = toMinutes(item.scheduleCourse.startTime);
+  const morningMatch = !searchCriteria.morningOnly || startMinutes < 12 * 60;
+  const eveningMatch = !searchCriteria.eveningOnly || startMinutes >= 17 * 60;
+  const openSeatsMatch = !searchCriteria.openSeatsOnly || !item.details.seats.startsWith("0 /");
+  const onlineMatch = !searchCriteria.onlineOnly || item.modality.toLowerCase().includes("online") || item.modality.toLowerCase().includes("hybrid");
+  const majorMatch = !searchCriteria.majorReqOnly || item.majorRequirement;
+
+  return bySubject && byNumber && morningMatch && eveningMatch && openSeatsMatch && onlineMatch && majorMatch;
+}
+
+function hasTimeConflict(candidateCourse) {
+  const current = JSON.parse(sessionStorage.getItem("scheduleClasses") || "[]");
+
+  return current.some(existing => {
+    if (existing.id === candidateCourse.id) {
+      return false;
+    }
+
+    const sharedDay = existing.days.some(day => candidateCourse.days.includes(day));
+    if (!sharedDay) {
+      return false;
+    }
+
+    const existingStart = toMinutes(existing.startTime);
+    const existingEnd = toMinutes(existing.endTime);
+    const candidateStart = toMinutes(candidateCourse.startTime);
+    const candidateEnd = toMinutes(candidateCourse.endTime);
+
+    return candidateStart < existingEnd && existingStart < candidateEnd;
+  });
+}
+
+function toMinutes(timeString) {
+  const [hours, minutes] = timeString.split(":").map(Number);
+  return hours * 60 + minutes;
 }
 
 function extractCourseNumber(code) {

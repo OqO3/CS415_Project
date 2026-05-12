@@ -3,6 +3,12 @@ const subjectInput = document.getElementById("subjectInput");
 const subjectSuggestions = document.getElementById("subjectSuggestions");
 const courseNumber = document.getElementById("courseNumber");
 
+const morningOnly = document.getElementById("morningOnly");
+const eveningOnly = document.getElementById("eveningOnly");
+const openSeatsOnly = document.getElementById("openSeatsOnly");
+const onlineOnly = document.getElementById("onlineOnly");
+const majorReqOnly = document.getElementById("majorReqOnly");
+
 const clearButton = document.getElementById("clearButton");
 const searchButton = document.getElementById("searchButton");
 
@@ -49,6 +55,11 @@ clearButton.addEventListener("click", () => {
   termSelect.selectedIndex = 0;
   subjectInput.value = "";
   courseNumber.value = "";
+  morningOnly.checked = false;
+  eveningOnly.checked = false;
+  openSeatsOnly.checked = false;
+  onlineOnly.checked = false;
+  majorReqOnly.checked = false;
   subjectSuggestions.hidden = true;
 });
 
@@ -56,7 +67,12 @@ searchButton.addEventListener("click", () => {
   const criteria = {
     term: termSelect.value || "Any term",
     subject: subjectInput.value.trim() || "Any subject",
-    courseNumber: courseNumber.value.trim() || "Any number"
+    courseNumber: courseNumber.value.trim() || "Any number",
+    morningOnly: morningOnly.checked,
+    eveningOnly: eveningOnly.checked,
+    openSeatsOnly: openSeatsOnly.checked,
+    onlineOnly: onlineOnly.checked,
+    majorReqOnly: majorReqOnly.checked
   };
 
   sessionStorage.setItem("searchCriteria", JSON.stringify(criteria));
