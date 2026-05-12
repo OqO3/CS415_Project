@@ -205,7 +205,9 @@ function render() {
   chipRow.innerHTML = "";
   resultsList.innerHTML = "";
 
-  const visibleResults = mockResults.filter(matchesCriteria);
+  const visibleResults = mockResults
+    .filter(matchesCriteria)
+    .sort((a, b) => extractCourseNumber(a.code) - extractCourseNumber(b.code));
 
   visibleResults.forEach(item => {
     const index = mockResults.indexOf(item);
@@ -292,6 +294,11 @@ function matchesCriteria(item) {
   const byNumber = typedNumber === "" || typedNumber === "any number" || item.catalogNumber.includes(typedNumber) || item.code.replace(" ", "").toLowerCase().includes(typedNumber);
 
   return bySubject && byNumber;
+}
+
+function extractCourseNumber(code) {
+  const match = code.match(/(\d+)/);
+  return match ? Number(match[1]) : Number.MAX_SAFE_INTEGER;
 }
 
 function statusColor(status) {
