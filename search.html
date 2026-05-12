@@ -22,30 +22,11 @@
         <option>Fall 2026</option>
       </select>
 
-      <label for="subjectSelect">Subject</label>
-      <select id="subjectSelect">
-        <option value="">Select a subject</option>
-        <option>Computer Science</option>
-        <option>Mathematics</option>
-        <option>Statistics</option>
-        <option>English</option>
-        <option>French</option>
-        <option>Engineering</option>
-        <option>Psychology</option>
-        <option>Japanese</option>
-        <option>Communications</option>
-        <option>Biology</option>
-        <option>Chemistry</option>
-        <option>Physics</option>
-        <option>Economics</option>
-        <option>Sociology</option>
-        <option>History</option>
-        <option>Political Science</option>
-        <option>Philosophy</option>
-        <option>Business Administration</option>
-        <option>Nursing</option>
-        <option>Art History</option>
-      </select>
+      <label for="subjectInput">Subject</label>
+      <div class="subject-autocomplete">
+        <input id="subjectInput" placeholder="Type or select a subject" autocomplete="off" />
+        <div id="subjectSuggestions" class="subject-suggestions" hidden></div>
+      </div>
 
       <label for="courseNumber">Course Number</label>
       <input id="courseNumber" placeholder="Enter course number (ex: 3745)" />
